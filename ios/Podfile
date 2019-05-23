@@ -49,6 +49,8 @@ target 'geotouristApp' do
   pod 'Firebase/Core'
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
 end
 
 post_install do |installer|
