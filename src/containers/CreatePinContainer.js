@@ -3,19 +3,20 @@ import { Platform } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withFormik } from 'formik';
+import PropTypes from 'prop-types';
 import ImagePicker from 'react-native-image-crop-picker';
 
-import PropTypes from 'prop-types';
 import { getFileName, getFileExtention } from '../utils/imagePickerUtils';
 import withKeyboardDismiss from '../hocs/withKeyboardDismiss';
-
 import CreatePinScreen from '../screens/CreatePinScreen';
-
 import { addPinToTour } from '../actions/toursActions';
-
 import { CreateTourSchema } from '../utils/validationSchemes';
 
 class CreatePinContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { recoderVisible: false }
+  }
   static propTypes = {
     values: PropTypes.object,
     navigation: PropTypes.object,
@@ -50,7 +51,7 @@ class CreatePinContainer extends Component {
             name: filename,
           });
         }).catch(err => console.warn('openPicker err', err));
-      } else {
+      } else if (media_type == 2) {
         ImagePicker.openCamera({
           mediaType: 'video',
         }).then(async image => {
@@ -63,6 +64,9 @@ class CreatePinContainer extends Component {
             name: filename,
           });
         }).catch(err => console.warn('openPicker err', err));
+      } else {
+        this.setState({ recoderVisible: true })
+        
       }
     } else {
       if (media_type == 1) {
@@ -80,7 +84,7 @@ class CreatePinContainer extends Component {
             name: filename,
           });
         }).catch(err => console.warn('openPicker err', err));
-      } else {
+      } else if (media_type == 2){
         ImagePicker.openPicker({
           mediaType: 'video',
         }).then(async image => {
@@ -93,6 +97,8 @@ class CreatePinContainer extends Component {
             name: filename,
           });
         }).catch(err => console.warn('openPicker err', err));
+      }else{
+        
       }
     }
   };
@@ -122,6 +128,7 @@ class CreatePinContainer extends Component {
         handleBlur={handleBlur}
         openPicker={this.openPicker}
         handleCreatePinSubmit={this.handleCreatePinSubmit}
+        recoderVisible={this.state.recoderVisible}
         onLeftPress={() => navigation.goBack()}
       />
     );

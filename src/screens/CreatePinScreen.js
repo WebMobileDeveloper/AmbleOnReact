@@ -12,7 +12,7 @@ import NativeBaseFloatingInput from '../components/NativeBaseFloatingInput';
 export default class CreatePinScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { modalVisible: false };
+    this.state = { modalVisible: false, recoderVisible: false };
     this.onClose = this.onClose.bind(this);
   }
 
@@ -27,7 +27,7 @@ export default class CreatePinScreen extends Component {
 
   render() {
     const { isCreatePinLoading, formValues, headerTitle, errors: { title, description },
-      touched, dirty, isFormValid, handleChange, handleBlur, handleCreatePinSubmit, onLeftPress, openPicker, } = this.props;
+      touched, dirty, isFormValid, handleChange, handleBlur, handleCreatePinSubmit, onLeftPress, recoderVisible } = this.props;
     return (
       <View style={styles.container}>
         <Header title="Create Pin" isNeedLeft onLeftPress={onLeftPress} />
@@ -59,8 +59,35 @@ export default class CreatePinScreen extends Component {
           <Button style={styles.actionBtn} block onPress={() => this.choiceAcion(true, 1)} ><Text style={styles.buttonTitle}>Take Photo</Text></Button>
           <Button style={styles.actionBtn} block onPress={() => this.choiceAcion(false, 2)} ><Text style={styles.buttonTitle}>Import Video</Text></Button>
           <Button style={styles.actionBtn} block onPress={() => this.choiceAcion(true, 2)} ><Text style={styles.buttonTitle}>Capture Video</Text></Button>
+          <Button style={styles.actionBtn} block onPress={() => this.choiceAcion(false, 3)} ><Text style={styles.buttonTitle}>Import Audio</Text></Button>
+          <Button style={styles.actionBtn} block onPress={() => this.choiceAcion(true, 3)} ><Text style={styles.buttonTitle}>Record Audio</Text></Button>
           <Button style={styles.actionBtn} block onPress={this.onClose} ><Text style={styles.buttonTitle}>Cancel</Text></Button>
         </Overlay>
+        {/* <Overlay visible={this.state.recoderVisible} >
+          <Recorder
+            style={{ flex: 1 }} onComplete={this.recorderComplete} maxDurationMillis={150000} showDebug={true} showBackButton={true}
+            audioMode={{
+              allowsRecordingIOS: true,
+              interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+              playsInSilentModeIOS: true,
+              playsInSilentLockedModeIOS: true,
+              shouldDuckAndroid: true,
+              interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+              playThroughEarpieceAndroid: false
+            }}
+            resetButton={(renderProps) => {
+              return (<Button onPress={renderProps.onPress} danger block style={{ marginVertical: 5 }} ><Text>Reset</Text></Button>);
+            }}
+            recordingCompleteButton={(renderProps) => {
+              return (<Button onPress={renderProps.onPress} block success style={{ marginVertical: 5 }}><Text>Finish</Text></Button>);
+            }}
+            playbackSlider={(renderProps) => {
+              console.log({ 'maximumValue: ': renderProps.maximumValue });
+              return (<Slider minimimValue={0} maximumValue={renderProps.maximumValue} onValueChange={renderProps.onSliderValueChange}
+                value={renderProps.value} style={{ width: '100%' }} />);
+            }}
+          />
+        </Overlay> */}
       </View>
     );
   }

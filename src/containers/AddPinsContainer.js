@@ -88,7 +88,6 @@ class AddPinsContainer extends Component {
   };
 
   render() {
-    console.warn('AddPinsContainer props', this.props);
     const { region, GPSError, temporaryMarker } = this.state;
     const {
       navigation,
