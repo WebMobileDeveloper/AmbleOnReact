@@ -23,15 +23,12 @@ export default class CreatePinScreen extends Component {
   }
 
   showRecordModal = () => {
-    console.log("show recorder")
     this.setState({ modalVisible: false, recorderVisible: true });
   }
-  onSaveAudio = (path, lastSecs) => {
-    console.log("hide recorder")
+  onSaveAudio = (uri) => {
     this.setState({ recorderVisible: false });
-    console.log("======", path, lastSecs);
-    if (lastSecs) {
-      this.props.saveRecordAudio(path);
+    if (uri) {
+      this.props.saveRecordAudio(uri);
     }
   }
 

@@ -27,7 +27,6 @@ export default class Recorder extends Component {
         super(props);
         this.state = {
             isLoggingIn: false,
-            lastSecs: 0,
             recordSecs: 0,
             recordTime: '00:00:00',
             currentPositionSec: 0,
@@ -119,12 +118,10 @@ export default class Recorder extends Component {
         }
 
         const uri = await this.audioRecorderPlayer.startRecorder(this.state.path);
-        console.log("====path", this.state.path)
         this.setState({ uri: uri })
         this.audioRecorderPlayer.addRecordBackListener((e) => {
             this.setState({
                 recordSecs: e.current_position,
-                lastSecs: e.current_position,
                 recordTime: this.audioRecorderPlayer.mmssss(Math.floor(e.current_position)),
             });
             return;
@@ -165,18 +162,20 @@ export default class Recorder extends Component {
         this.audioRecorderPlayer.removePlayBackListener();
     }
     onUpload = () => {
-        const lastSecs = this.state.lastSecs;
-        if (lastSecs) {
-            this.setState({ lastSecs: 0 });
-            this.props.onUpload(this.state.path, lastSecs);
+        const uri = this.state.uri;
+        if (uri) {
+            console.log("on upload============", uri)
+            this.setState({ uri: null });
+            this.props.onUpload(uri);
         } else {
             Alert.alert("There isn't any record data!");
             return;
         }
-
     }
     onCancel = () => {
-        this.props.onUpload(this.state.path, 0);
+        console.log("on cancel============")
+        this.setState({ uri: null });
+        this.props.onUpload();
     }
     render() {
         const playWidth = this.state.currentDurationSec == 0 ? 0 : (this.state.currentPositionSec / this.state.currentDurationSec) * (screenWidth - 56 * ratio);

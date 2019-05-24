@@ -3,11 +3,11 @@ import { create } from 'apisauce';
 // var FormData = require('form-data');
 import { storageService } from './storageService';
 import navigationService from './navigationService';
-
+import { HOST_ADDRESS } from '../Const';
 const api = create({
   // baseURL: 'http://light-it-10.tk/api/',
   // baseURL: 'http://192.168.157.130:3000/api/',
-  baseURL: 'http://ec2-3-14-143-176.us-east-2.compute.amazonaws.com:3000/api/',
+  baseURL: HOST_ADDRESS + '/api/',
   timeout: 3000,
 });
 
@@ -35,6 +35,7 @@ export const RESTService = {
     formFile.append('coordinate[latitude]', coordinate.latitude);
     formFile.append('coordinate[longitude]', coordinate.longitude);
     formFile.append('media_type', media_type);
+    console.loe(formFile)
     return api.post(`tour/${tourId}/pin/`, formFile);
   },
   deletePin: (tourId, pinId) => api.delete(`tour/${tourId}/pin/${pinId}`),
