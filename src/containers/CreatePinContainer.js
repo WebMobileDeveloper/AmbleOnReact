@@ -15,13 +15,9 @@ import { CreateTourSchema } from '../utils/validationSchemes';
 class CreatePinContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { recoderVisible: false }
+    this.state = { recorderVisible: false }
   }
-  static propTypes = {
-    values: PropTypes.object,
-    navigation: PropTypes.object,
-    isCreatePinLoading: PropTypes.bool,
-  };
+
 
   handleCreatePinSubmit = (media_type, formdata) => {
     const { values, navigation } = this.props;
@@ -44,11 +40,11 @@ class CreatePinContainer extends Component {
         }).then(async image => {
           const fileName = getFileName(image.path);
           const fileExtension = getFileExtention(image.path);
-          const filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
+          const final_filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
           this.handleCreatePinSubmit(media_type, {
             imagePath: image.path,
             type: `image/${fileExtension}`,
-            name: filename,
+            name: final_filename,
           });
         }).catch(err => console.warn('openPicker err', err));
       } else if (media_type == 2) {
@@ -57,16 +53,15 @@ class CreatePinContainer extends Component {
         }).then(async image => {
           const fileName = getFileName(image.path);
           const fileExtension = getFileExtention(image.path);
-          const filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
+          const final_filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
           this.handleCreatePinSubmit(media_type, {
             imagePath: image.path,
             type: `video/${fileExtension}`,
-            name: filename,
+            name: final_filename,
           });
         }).catch(err => console.warn('openPicker err', err));
       } else {
-        this.setState({ recoderVisible: true })
-        
+        this.setState({ recorderVisible: true })
       }
     } else {
       if (media_type == 1) {
@@ -77,43 +72,67 @@ class CreatePinContainer extends Component {
         }).then(async image => {
           const fileName = getFileName(image.path);
           const fileExtension = getFileExtention(image.path);
-          const filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
+          const final_filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
           this.handleCreatePinSubmit(media_type, {
             imagePath: image.path,
             type: `image/${fileExtension}`,
-            name: filename,
+            name: final_filename,
           });
         }).catch(err => console.warn('openPicker err', err));
-      } else if (media_type == 2){
+      } else if (media_type == 2) {
         ImagePicker.openPicker({
           mediaType: 'video',
         }).then(async image => {
           const fileName = getFileName(image.path);
           const fileExtension = getFileExtention(image.path);
-          const filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
+          const final_filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
           this.handleCreatePinSubmit(media_type, {
             imagePath: image.path,
             type: `video/${fileExtension}`,
-            name: filename,
+            name: final_filename,
           });
         }).catch(err => console.warn('openPicker err', err));
-      }else{
-        
+      } else {
+        ImagePicker.openPicker({
+          mediaType: 'audio',
+        }).then(async image => {
+          const fileName = getFileName(image.path);
+          const fileExtension = getFileExtention(image.path);
+          const final_filename = Platform.OS === 'ios' ? image.filename : `${fileName}${fileExtension}`;
+          const file = {
+            imagePath: image.path,
+            type: `audio/${fileExtension}`,
+            name: final_filename,
+          }
+          console.log("file======", file)
+          // this.handleCreatePinSubmit(media_type, file);
+        }).catch(err => console.warn('openPicker err', err));
       }
     }
   };
 
+  saveRecordAudio = (path) => {
+    const fileName = getFileName(path);
+    const fileExtension = getFileExtention(path);
+    const final_filename = Platform.OS === 'ios' ? path : `${fileName}${fileExtension}`;
+    console.log("====",path, fileExtension, final_filename)
+    // this.handleCreatePinSubmit(3, {
+    //   imagePath: path,
+    //   type: `image/${fileExtension}`,
+    //   name: final_filename,
+    // });
+  }
   render() {
     const {
       navigation,
       values,
       errors,
-      isCreatePinLoading,
+      // isCreatePinLoading,
       isValid,
       dirty,
       touched,
-      handleChange,
-      handleBlur,
+      // handleChange,
+      // handleBlur,
     } = this.props;
 
     return (
@@ -122,19 +141,24 @@ class CreatePinContainer extends Component {
         errors={errors}
         dirty={dirty}
         touched={touched}
-        handleChange={handleChange}
-        isCreatePinLoading={isCreatePinLoading}
+        handleChange={this.props.handleChange}
+        isCreatePinLoading={this.props.isCreatePinLoading}
         isFormValid={isValid}
-        handleBlur={handleBlur}
+        handleBlur={this.props.handleBlur}
         openPicker={this.openPicker}
+        saveRecordAudio={this.saveRecordAudio}
         handleCreatePinSubmit={this.handleCreatePinSubmit}
-        recoderVisible={this.state.recoderVisible}
+        recorderVisible={this.state.recorderVisible}
         onLeftPress={() => navigation.goBack()}
       />
     );
   }
 }
-
+CreatePinContainer.propTypes = {
+  values: PropTypes.object,
+  navigation: PropTypes.object,
+  isCreatePinLoading: PropTypes.bool,
+};
 const mapStateToProps = ({ tours: { isCreatePinLoading } }) => ({
   isCreatePinLoading,
 });

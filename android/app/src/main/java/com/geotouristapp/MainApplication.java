@@ -3,6 +3,7 @@ package com.geotouristapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dooboolab.RNAudioRecorderPlayerPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -42,6 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNAudioRecorderPlayerPackage(),
             new ReactVideoPackage(),
           new RNGoogleSigninPackage(),
           new RNGestureHandlerPackage(),

@@ -20,6 +20,7 @@ export default createStackNavigator(
   },
   {
     initialRouteName: 'ToursList',
+    // initialRouteName: 'CreatePin',
     headerMode: 'none',
   }
 );

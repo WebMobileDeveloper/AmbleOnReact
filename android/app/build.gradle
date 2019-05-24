@@ -151,6 +151,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-audio-recorder-player')
     implementation project(':react-native-video')
     implementation project(':react-native-google-signin')
     implementation project(':react-native-fbsdk')
