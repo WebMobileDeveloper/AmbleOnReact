@@ -1,0 +1,9 @@
+export const DEV_ENV = true;
+export const DEV_DEVICE = false;
+// export const DEV_ENV = false;
+// export const DEV_HOST_ADDRESS = 'http://localhost:3000';
+export const DEV_HOST_ADDRESS = 'http://192.168.1.120:3000';
+export const PROD_HOST_ADDRESS = 'http://ec2-3-14-143-176.us-east-2.compute.amazonaws.com:3000';
+export const HOST_ADDRESS = DEV_ENV ? DEV_HOST_ADDRESS : PROD_HOST_ADDRESS;
+export const DEV_LAT = 33.77969214331703
+export const DEV_LONG = 84.37278885394335

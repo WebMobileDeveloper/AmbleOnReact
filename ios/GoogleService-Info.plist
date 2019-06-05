@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>291405854067-qb6bs5jpcq545umclmunfme5jtut4rla.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.291405854067-qb6bs5jpcq545umclmunfme5jtut4rla</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>291405854067-r3me1dovkspg87190uumptildb8kevnp.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA51U0cwaPb82wTp3vCpnebf2JZFL7nvCM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>291405854067</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ambleon.AmbleOn</string>
+	<key>PROJECT_ID</key>
+	<string>geotourist-94354</string>
+	<key>STORAGE_BUCKET</key>
+	<string>geotourist-94354.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:291405854067:ios:0e9998472c8dc57e</string>
+	<key>DATABASE_URL</key>
+	<string>https://geotourist-94354.firebaseio.com</string>
+</dict>
+</plist>

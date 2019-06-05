@@ -1,0 +1,115 @@
+{
+  "project_info": {
+    "project_number": "291405854067",
+    "firebase_url": "https://geotourist-94354.firebaseio.com",
+    "project_id": "geotourist-94354",
+    "storage_bucket": "geotourist-94354.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291405854067:android:0467dff6b9dc2286",
+        "android_client_info": {
+          "package_name": "com.ambleon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291405854067-odjhghenmqd1hh91eqhsv9bu5jvd8evp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ambleon",
+            "certificate_hash": "a324112b0ebbcffdda2a9a460397f33af08b67a6"
+          }
+        },
+        {
+          "client_id": "291405854067-94vdf7ap8juhejacbdkha40qndhmnmpd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ambleon",
+            "certificate_hash": "add9166474d1bf314bac2d6b239cd44a5b79b221"
+          }
+        },
+        {
+          "client_id": "291405854067-9rkuerlej7578rauhg085podmjcdhqme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASTi3wTmfy4Mxe1y7gH8Fd06vpRcw071M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291405854067-9rkuerlej7578rauhg085podmjcdhqme.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "291405854067-qb6bs5jpcq545umclmunfme5jtut4rla.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ambleon.AmbleOn"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291405854067:android:b5df4c1cd7f27f00",
+        "android_client_info": {
+          "package_name": "com.geotouristapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291405854067-r3me1dovkspg87190uumptildb8kevnp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geotouristapp",
+            "certificate_hash": "a324112b0ebbcffdda2a9a460397f33af08b67a6"
+          }
+        },
+        {
+          "client_id": "291405854067-ui1ls7vaufbtgkmilvbtvg37jga0m6im.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geotouristapp",
+            "certificate_hash": "add9166474d1bf314bac2d6b239cd44a5b79b221"
+          }
+        },
+        {
+          "client_id": "291405854067-9rkuerlej7578rauhg085podmjcdhqme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASTi3wTmfy4Mxe1y7gH8Fd06vpRcw071M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291405854067-9rkuerlej7578rauhg085podmjcdhqme.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "291405854067-qb6bs5jpcq545umclmunfme5jtut4rla.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ambleon.AmbleOn"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
