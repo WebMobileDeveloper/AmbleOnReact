@@ -1,55 +1,90 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { ListItem } from 'react-native-elements';
 import images from '../constants/images';
 import { scale } from '../utils/dimensions';
 import colors from '../constants/colors';
+import { MyAirbnbRating } from './customElements';
+import { DEV_ENV } from "../Const";
+import { RESTService } from "../services/RESTservice";
 
-const ToursListItem = ({ title, imageSource, navigate }) => {
-  const source = typeof imageSource === 'string' ? { uri: imageSource } : imageSource;
-
+const ToursListItem = ({ item, showTourPreview }) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigate()}>
-      <Image style={styles.image} source={source} />
-      <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-        {title}
-      </Text>
-    </TouchableOpacity>
+    <ListItem
+      key={item.id}
+      title={item.title}
+      subtitle={
+        <View style={styles.subtitleView}>
+          <Text style={styles.subtitleStyle}>{item.description}</Text>
+          <View style={styles.ratingContainer}>
+            <MyAirbnbRating size={15} tour={item} />
+          </View>
+        </View>
+      }
+      leftAvatar={{
+        source: item.avata ? { uri: item.avata } : images.tour_avata,
+        containerStyle: styles.avatarContainerStyle,
+        overlayContainerStyle: styles.avataOverlayStyle,
+        imageProps: { style: styles.avataImageStyle },
+      }}
+      containerStyle={styles.containerStyle}
+      titleStyle={styles.titleStyle}
+      onPress={() => showTourPreview(item)}
+      rightIcon={DEV_ENV ? {
+        raised: true,
+        name: 'heartbeat',
+        type: 'font-awesome',
+        color: '#f50',
+        onPress: () => { RESTService.deleteTour(item.id) }
+      } : {}}
+    />
   );
 };
 
 ToursListItem.propTypes = {
-  navigate: PropTypes.func,
-  title: PropTypes.string.isRequired,
-  imageSource: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-ToursListItem.defaultProps = {
-  imageSource: images.tour_image_placeholder,
+  item: PropTypes.object.isRequired,
+  showTourPreview: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyle: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingHorizontal: scale(20),
-    paddingVertical: scale(10),
-    marginBottom: scale(15),
+    paddingHorizontal: scale(10),
+    paddingVertical: scale(5),
+    marginBottom: scale(5),
     backgroundColor: colors.blackOpacity,
   },
-  image: {
-    width: scale(60),
-    height: scale(60),
-    borderRadius: scale(15),
-    backgroundColor: colors.white,
+  avatarContainerStyle: {
+    width: scale(50),
+    height: scale(50),
+    borderRadius: scale(10),
     marginRight: scale(15),
+    backgroundColor: colors.white,
   },
-  title: {
+  avataOverlayStyle: {
+    backgroundColor: 'transparent'
+  },
+  avataImageStyle: {
+    width: scale(50),
+    height: scale(50),
+    borderRadius: scale(10),
+  },
+  titleStyle: {
     fontSize: scale(20),
     color: colors.white,
     flex: 1,
   },
+  subtitleStyle: {
+    color: colors.white,
+  },
+  ratingContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  }
 });
 
 export default ToursListItem;

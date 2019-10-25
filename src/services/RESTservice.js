@@ -1,6 +1,4 @@
 import { create } from 'apisauce';
-// import * as FD from 'form-data';
-// var FormData = require('form-data');
 import { storageService } from './storageService';
 import navigationService from './navigationService';
 import { HOST_ADDRESS } from '../Const';
@@ -12,34 +10,46 @@ const api = create({
 });
 
 export const RESTService = {
-  facebookSignIn: (accessToken, userId) =>
-    api.post('auth/login/facebook/', { accessToken, userId }),
-  googleSignIn: (accessToken, userId) => api.post('auth/login/google/', { accessToken, userId }),
+  facebookSignIn: (accessToken, userId) => api.post('auth/login/facebook/', { accessToken, userId }),
+  googleSignIn: (accessToken, userId) => {
+    console.log("accessToken, userId ====",accessToken, userId );
+    return api.post('auth/login/google/', { accessToken, userId })
+  },
   logout: () => api.post('auth/logout'),
   getTours: () => api.get('tour'),
   getPinsForTour: tourId => api.get(`tour/${tourId}/pin`),
-  createTour: ({ title, description, ownerId }) =>
-    api.post('tour', { title, description, ownerId }),
-  createPin: (tourId, title, description, coordinate) =>
-    api.post(`tour/${tourId}/pin/`, { tourId, title, description, coordinate }),
-  createPinWithPhoto: async (tourId, title, description, coordinate, media_type, file = null) => {
-    const formFile = new FormData();
-    formFile.append('file', {
+  createTour: ({ title, description, ownerId }) => api.post('tour', { title, description, ownerId }),
+  createPin: (tourId, title, description, coordinate) => api.post(`tour/${tourId}/pin/`, { tourId, title, description, coordinate }),
+  createPinWithMedia: async (tourId, title, description, coordinate, media_type, file) => {
+    const body = new FormData();
+    body.append('file', {
       name: file.name,
       uri: file.imagePath,
       type: file.type,
     });
-    formFile.append('tourId', tourId);
-    formFile.append('title', title);
-    formFile.append('description', description);
-    formFile.append('coordinate[latitude]', coordinate.latitude);
-    formFile.append('coordinate[longitude]', coordinate.longitude);
-    formFile.append('media_type', media_type);
-    console.loe(formFile)
-    return api.post(`tour/${tourId}/pin/`, formFile);
+    body.append('tourId', tourId);
+    body.append('title', title);
+    body.append('description', description);
+    body.append('coordinate[latitude]', coordinate.latitude);
+    body.append('coordinate[longitude]', coordinate.longitude);
+    body.append('media_type', media_type);
+    return api.post(`tour/${tourId}/pin/`, body);
+  },
+  addAttachment: async (pinId, media_type, file) => {
+    const body = new FormData();
+    body.append('file', {
+      name: file.name,
+      uri: file.imagePath,
+      type: file.type,
+    });
+    body.append('media_type', media_type);
+    const result = api.post(`pin/${pinId}/attachment/`, body);
+    return result;
   },
   deletePin: (tourId, pinId) => api.delete(`tour/${tourId}/pin/${pinId}`),
   deleteTour: tourId => api.delete(`tour/${tourId}`),
+  create_feedback: (userId, tourId, rate) => api.post(`rating/`, { userId, tourId, rate }),
+  update_feedback: (id, rate) => api.post(`rating/${id}`, { rate }),
 };
 
 export const setTokenToHeaders = token => {

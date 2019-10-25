@@ -5,7 +5,6 @@ export const getFileExtention = fileName => {
       return extension[0].toLowerCase();
     }
   }
-  console.log('getFileExtention fileName is empty');
   return null;
 };
 
@@ -16,6 +15,5 @@ export const getFileName = filePath => {
       return fileName[0];
     }
   }
-  console.log('getFileName filePath is empty');
   return null;
 };

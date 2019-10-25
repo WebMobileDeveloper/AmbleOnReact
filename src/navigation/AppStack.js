@@ -1,12 +1,12 @@
 import { createStackNavigator } from 'react-navigation';
 
-import AddPinsContainer from '../containers/AddPinsContainer';
-import CreatePinContainer from '../containers/CreatePinContainer';
-import ToursListContainer from '../containers/ToursListContainer';
-import TourStartContainer from '../containers/TourStartContainer';
-import CreateTourContainer from '../containers/CreateTourContainer';
-import TourPreviewContainer from '../containers/TourPreviewContainer';
-import CompletePinContainer from '../containers/CompletePinContainer';
+import AddPinsContainer from '../containers/add_pins/AddPinsContainer';
+import CreatePinContainer from '../containers/create_pin/CreatePinContainer';
+import ToursListContainer from '../containers/tours_list/ToursListContainer';
+import TourStartContainer from '../containers/tour_start/TourStartContainer';
+import CreateTourContainer from '../containers/create_tour/CreateTourContainer';
+import TourPreviewContainer from '../containers/tour_preview/TourPreviewContainer';
+import CompletePinContainer from '../containers/complete_pin/CompletePinContainer';
 
 export default createStackNavigator(
   {

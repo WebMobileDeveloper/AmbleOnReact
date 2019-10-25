@@ -10,4 +10,6 @@ export default {
   black: 'black',
   green: 'green',
   modalBackground: 'rgba(0,0,0,0.5)',
+  transparent:'rgba(0,0,0,0)',
+  searchBoxBack:'rgba(17,17,80,0.8)',
 };

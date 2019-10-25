@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 
-import LoginContainer from '../containers/LoginContainer';
+import LoginContainer from '../containers/login/LoginContainer';
 
 export default createStackNavigator(
   {

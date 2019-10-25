@@ -58,3 +58,5 @@ buck-out/
 *.jsbundle
 
 src/utils/mocks.js
+ios/Podfile.lock
+yarn.lock

@@ -9,6 +9,7 @@ const Header = ({
   title,
   backgroundColor,
   containerStyle,
+  textStyle,
   isNeedLeft,
   isNeedRight,
   onLeftPress,
@@ -21,7 +22,7 @@ const Header = ({
           <Image style={styles.leftBtnImage} source={images.arrow_left} />
         </TouchableOpacity>
       )}
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title, textStyle]}>{title}</Text>
       {isNeedRight && (
         <TouchableOpacity style={styles.rightBtnContainer} onPress={onLeftPress}>
           <Text style={styles.buttonTitle}>Log out</Text>
